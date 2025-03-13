@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@inject IFileVersionProvider FileVersionProvider
+@inject ThemeService Themes
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    string? InitialThemeName = HttpContextAccessor.HttpContext?.Request.Cookies["ActiveTheme"];
+    Themes.SetActiveThemeByName(InitialThemeName);
+    var bsTheme = Themes.GetBootstrapThemeCssUrl(Themes.ActiveTheme);
+    var dxTheme = Themes.GetThemeCssUrl(Themes.ActiveTheme);
+    var hlTheme = Themes.GetHighlightJSThemeCssUrl(Themes.ActiveTheme);
+
+    string AppendVersion(string path) => FileVersionProvider.AddFileVersionToPath("/", path);
+}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    @if (!string.IsNullOrEmpty(bsTheme))
+    {
+        <link rel="stylesheet" href="@AppendVersion(bsTheme)" bs-theme-link />
+    }
+    @if (!string.IsNullOrEmpty(dxTheme))
+    {
+        <link rel="stylesheet" href="@AppendVersion(dxTheme)" dx-theme-link />
+    }
+    @if (!string.IsNullOrEmpty(hlTheme))
+    {
+        <link rel="stylesheet" href="@hlTheme" hl-theme-link />
+    }
+    @DxResourceManager.RegisterScripts()
+    <link href=@AppendVersion("css/site.css") rel="stylesheet" />
+    <link href=@AppendVersion("SafeWay.styles.css") rel="stylesheet" />
+    <link href="switcher-resources/css/theme-switcher.css" rel="stylesheet" />
+    <link href="switcher-resources/css/themes.css" rel="stylesheet" />
+    <HeadOutlet />
+</head>
+<body>
+    <div id="switcher-container" data-permanent></div>
+    <Routes></Routes>
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>
+
+@code{
+    private string AppendVersion(string path) => FileVersionProvider.AddFileVersionToPath("/", path);
+}
