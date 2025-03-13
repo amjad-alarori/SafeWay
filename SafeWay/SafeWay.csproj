@@ -6,6 +6,9 @@
     <UserSecretsId>aspnet-SafeWay-53bc9b9d-9d6a-45d4-8429-2a2761773502</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Components\Layout\NavBar.razor" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="DevExpress.Blazor" Version="24.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.*-*" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.*-*" />
@@ -13,8 +16,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.*-*" />
   </ItemGroup>
 	<ItemGroup>
+		<None Include="Components\Pages\Components\NavBar.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcher.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcherContainer.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcherItem.razor" />
+	</ItemGroup>
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Components\Layout\NavBar.razor" />
+	</ItemGroup>
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="Components\Layout\NavBar.razor" />
 	</ItemGroup>
 </Project>
