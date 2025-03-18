@@ -16,7 +16,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.*-*" />
   </ItemGroup>
 	<ItemGroup>
-		<None Include="Components\Pages\Components\NavBar.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcher.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcherContainer.razor" />
 		<None Include="Components\ThemeSwitcher\ThemeSwitcherItem.razor" />
@@ -26,5 +25,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <_ContentIncludedByDefault Remove="Components\Layout\NavBar.razor" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Components\Pages\Components\" />
 	</ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿@implements IDisposable
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
-@using SafeWay.Components.Pages.Components
+
 
 <div class="page">
     <AuthorizeView>
@@ -24,10 +24,7 @@
                                 <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="Back to Home" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-back"></DxButton>
                             </NavLink>
                         }
-                        <NavLink href="@UrlGenerator.GetUrl("Account/Manage", ToggledSidebar)" class="button-link menubutton-float-end display-desktop">
-                            <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="@context.User.Identity?.Name" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-user"></DxButton>
-                        </NavLink>
-                        <form action="@UrlGenerator.GetUrl("Account/Logout", ToggledSidebar)" method="post" class="display-desktop">
+                        <form action="@UrlGenerator.GetUrl("Account/Logout", ToggledSidebar)" method="post" class="display-desktop menubutton-float-end">
                             <AntiforgeryToken />
                             <input type="hidden" name="ReturnUrl" value="@currentUrl" />
                             <DxButton RenderStyle="@ButtonRenderStyle.Dark" SubmitFormOnClick="true" Text="Log out" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-log-out"></DxButton>
@@ -43,8 +40,11 @@
         <NotAuthorized>
             <NavBar />
             <div class="nav-buttons-container">
-                <NavLink href="@UrlGenerator.GetUrl("Account/Login", ToggledSidebar)" class="button-link menubutton-float-end display-desktop">
+                <NavLink href="@UrlGenerator.GetUrl("Account/Login", ToggledSidebar)" class="button-link">
                     <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="Log in" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-log-in"></DxButton>
+                </NavLink>
+                <NavLink href="@UrlGenerator.GetUrl("Account/Register", ToggledSidebar)" class="button-link">
+                    <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="Register" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="menu-button-nav" IconCssClass="icon icon-user"></DxButton>
                 </NavLink>
             </div>
             <div class="p-4">
@@ -67,12 +67,7 @@
     </div>;
 
     private RenderFragment drawerFooter => @<div>
-        <NavLink href="https://docs.devexpress.com/Blazor/400725/blazor-components" class="button-link">
-            <DxButton Text="Docs" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" IconCssClass="icon docs-icon"></DxButton>
-        </NavLink>
-        <NavLink href="https://demos.devexpress.com/blazor/" class="button-link">
-            <DxButton Text="Demos" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" IconCssClass="icon demos-icon"></DxButton>
-        </NavLink>
+
     </div>;
 
     private string? currentUrl;
